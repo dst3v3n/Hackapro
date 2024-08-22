@@ -148,7 +148,7 @@
     background: #24303c;
     padding: 30px;
     margin:  auto;
-    margin-top: 40px;
+    margin-top: 200px;
     border-radius: 4px;
     font-family: 'calibri';
     color: white;
@@ -204,7 +204,7 @@
     width: 340px;
 }
 
-.Eye, .Eye2, .Eye3{
+.Eye{
     position: absolute;
     transform: translate(300px,5px);
     font-size: 30px;
