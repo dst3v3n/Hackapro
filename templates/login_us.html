@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="/hackaton/static/css/login_us.css">
+  <link rel="stylesheet" href="{% static 'css/login_us.css' %}">
   <title>Formulario Registro</title>
 </head>
 <body class="hidden">
@@ -13,20 +14,23 @@
         <div class="cssload-loader">HACKATON</div>
     </div>
 
+  <form method = "post">   
   <section class="form-register">
     <h4>Formulario Login</h4>
 
-    <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+    {{form_login.email}}
+    {% csrf_token %}
     <span class="Eye">
         <i class="bx bx-hide"></i>
     </span>
-    <input class="controls" type="password" name="password" id="password" placeholder="Ingrese su Contraseña">
+    {{form_login.password}}
     <input class="botons" type="submit" value="Iniciar ">
-    <p><a href="/templates/registro_us.html">¿No tines cuenta?</a></p>
+    <p><a href="{% url 'registro' %}">¿No tines cuenta?</a></p>
   </section>
-
-  <script src="/hackaton/static/js/vista_password.js"></script>
+  </form>
+    
+  <script src="/static/js/vista_password.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="/hackaton/static/js/loader.js"></script>
+  <script src="/static/js/loader.js"></script>
 </body>
 </html>

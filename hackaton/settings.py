@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'actividad.apps.ActividadConfig',
     'admins.apps.AdminsConfig',
+    'sweetify',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,5 @@ AUTH_USER_MODEL = 'admins.Myuser'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+

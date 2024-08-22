@@ -11,13 +11,13 @@ from admins.models import Myuser
 class UserCreationForm (forms.ModelForm):
     password2 = forms.CharField (label = "password confirmation" , widget=forms.PasswordInput(attrs={
         'Placeholder' : 'Digite de nuevo la contraseña',
-        'id' : 'passw',
-        'class' : 'pass'
+        'id' : 'password1',
+        'class' : 'controls'
     }))
     password1 = forms.CharField (label = "password" , widget=forms.PasswordInput(attrs={
         'Placeholder' : 'Ingrese su contraseña, con un mínimo de 8 caracteres.',
-        'id' : 'passw',
-        'class' : 'pass'
+        'id' : 'password',
+        'class' : 'controls'
     }))
 
     class Meta :

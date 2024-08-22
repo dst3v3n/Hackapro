@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager , AbstractUser
-from .cargos import select 
+from .select import select 
 
 class MyUserManager (BaseUserManager):
     def create_user (self , email , password = None , **extra_fields ):
@@ -29,10 +29,11 @@ class Myuser (AbstractUser):
     name = models.CharField (max_length = 25 , blank = False , null = False)
     last_name = models.CharField (max_length = 25 , blank = False , null = False)
     position = models.CharField (max_length = 65 , choices = select.cargo() , blank = False, null = False)
+    gender = models.CharField (max_length = 30 , choices = select.genero() , blank = False , null = False)
+    birthdate = models.DateField ()
+    sector = models.CharField (max_length = 65 , choices = select.sector() , blank = False , null = False)
     username = None
-    last_login = None
     first_name = None
-    last_name = None
     date_joined = None
 
     is_active = models.BooleanField (default = True)
