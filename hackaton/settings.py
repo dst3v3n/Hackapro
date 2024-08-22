@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'actividad.apps.ActividadConfig',
+    'admins.apps.AdminsConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,9 +77,15 @@ WSGI_APPLICATION = 'hackaton.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "hackaton",
+        "USER": "root",
+        #"PASSWORD": "",
+        "PASSWORD": "root",
+        #"HOST": "localhost",
+        "HOST": "127.0.0.1",
+        #"PORT": "3306",   }
+        "PORT": "3306",   }
 }
 
 
@@ -125,7 +133,7 @@ STATICFILES_DIRS=['hackaton/static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'admin.Myuser'
+AUTH_USER_MODEL = 'admins.Myuser'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'

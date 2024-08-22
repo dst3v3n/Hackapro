@@ -28,7 +28,7 @@ class Myuser (AbstractUser):
     email = models.EmailField (verbose_name = 'Dirección electronico' , max_length = 255 ,unique = True)
     name = models.CharField (max_length = 25 , blank = False , null = False)
     last_name = models.CharField (max_length = 25 , blank = False , null = False)
-    position = models.CharFIeld (max_length = 30 , choices = select.cargos , blank = False, null = False)
+    position = models.CharField (max_length = 65 , choices = select.cargo() , blank = False, null = False)
     username = None
     last_login = None
     first_name = None

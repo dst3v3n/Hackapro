@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
-from admin.models import Myuser
+from admins.models import Myuser
 
 # Register your models here.
 
@@ -43,20 +43,19 @@ class UserChangeForm (forms.ModelForm):
 
     class Meta:
         model = Myuser
-        fields = ['name' , 'password' ,'email' , 'type_user' , 'is_active' , 'is_admin']
+        fields = ['name' , 'password' ,'email' , 'is_active' , 'is_admin']
 
 
 class UserAdmin (BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ['email' , 'name' , 'type_user' , 'is_admin' , 'email_is_verified']
+    list_display = ['email' , 'name' , 'is_admin']
     list_filter = ['is_admin']
     fieldsets = [
         (None, {"fields": ["email", "password"]}),
         ("Personal info", {"fields": ['name']}),
-        ("Typer", {"fields": ['type_user']}),
-        ("Permissions", {"fields": ["is_admin" , 'email_is_verified']}),
+        ("Permissions", {"fields": ["is_admin"]}),
     ]
 
     add_fieldsets = [
