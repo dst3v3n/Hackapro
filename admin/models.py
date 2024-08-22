@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager , AbstractUser
+from .cargos import select 
 
 class MyUserManager (BaseUserManager):
     def create_user (self , email , password = None , **extra_fields ):
@@ -26,6 +27,8 @@ class MyUserManager (BaseUserManager):
 class Myuser (AbstractUser):
     email = models.EmailField (verbose_name = 'Dirección electronico' , max_length = 255 ,unique = True)
     name = models.CharField (max_length = 25 , blank = False , null = False)
+    last_name = models.CharField (max_length = 25 , blank = False , null = False)
+    position = models.CharFIeld (max_length = 30 , choices = select.cargos , blank = False, null = False)
     username = None
     last_login = None
     first_name = None
