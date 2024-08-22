@@ -30,7 +30,7 @@ class Myuser (AbstractUser):
     last_name = models.CharField (max_length = 25 , blank = False , null = False)
     position = models.CharField (max_length = 65 , choices = select.cargo() , blank = False, null = False)
     gender = models.CharField (max_length = 30 , choices = select.genero() , blank = False , null = False)
-    birthdate = models.DateField ()
+    birthdate = models.DateField (blank = True , null = False)
     sector = models.CharField (max_length = 65 , choices = select.sector() , blank = False , null = False)
     username = None
     first_name = None

@@ -9,18 +9,20 @@
   <title>Formulario registro de actividades</title>
 </head>
 <body class="hidden">
-    <div class="centrado" id="onload">
+  <div class="centrado" id="onload">
         <div class="cssload-loader">HACKATON</div>
-    </div>
+  </div>
 
+  <form method = 'post'>
+  {% csrf_token %}
   <section class="form-register">
     <h4>Formulario Registro De Actividades </h4>
-    <input class="controls" type="text" name="actividad" id="actividad" placeholder="Ingrese la actividad">
-    <textarea class="controls" type="text" name="descripcion" id="descripcion" placeholder="Ingrese la descripcion">
+    {{form_activity.actividad}}
+    {{form_activity.descripcion}}
 
     <input class="botons" type="submit" value="Registrar">
   </section>
-
+  </form>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/static/js/loader.js"></script>
 </body>

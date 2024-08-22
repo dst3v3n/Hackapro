@@ -80,11 +80,12 @@ DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "hackaton",
-        "USER": "root",
+        #"USER": "root",
+        "USER": "admin",
         #"PASSWORD": "",
-        "PASSWORD": "root",
-        #"HOST": "localhost",
-        "HOST": "127.0.0.1",
+        "PASSWORD": "hackaton",
+        "HOST": "hackaton.cxpkmdizoqk2.us-east-1.rds.amazonaws.com",
+        # "HOST": "127.0.0.1",
         #"PORT": "3306",   }
         "PORT": "3306",   }
 }

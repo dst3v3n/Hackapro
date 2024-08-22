@@ -18,6 +18,7 @@
     align-items: center;
 
   }
+
   .cssload-loader {
 	width: 500px;
 	height: 100px;
@@ -34,7 +35,7 @@
 	text-transform: uppercase;
 	font-weight: 900;
 	font-size:36px;
-	color: #84649c;
+	color: #469ADB;
 	letter-spacing: 0.2em;
 }
 .cssload-loader::before, .cssload-loader::after {
@@ -42,7 +43,7 @@
 	display: block;
 	width: 30px;
 	height: 30px;
-	background: #84649c;
+	background: #1D405C;
 	position: absolute;
 	animation: cssload-load 0.81s infinite alternate ease-in-out;
 		-o-animation: cssload-load 0.81s infinite alternate ease-in-out;

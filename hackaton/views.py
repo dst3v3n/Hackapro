@@ -10,8 +10,7 @@ from django.contrib.auth import login as auth_login
 class index (View):
     template_name = 'index.html'
 
-    def get (self, request: HttpRequest):
-        
+    def get (self, request: HttpRequest):        
         return render(request, self.template_name)
 
 class registro (View):

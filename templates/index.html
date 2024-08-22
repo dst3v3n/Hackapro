@@ -16,7 +16,7 @@
 
     <header>
         <div class="interior">
-          <a href="#" class="logo" target="blank">HACKATON</a>
+          <a href="{% url 'index' %}" class="logo" target="blank">HACKATON</a>
           <nav class="navegacion">
             <ul>
               {% if request.user.id != None %}
