@@ -21,7 +21,7 @@ class RegresionLineal (models.Model):
         Myuser,
         models.CASCADE
     )
-    trabajoRemoto = models.IntegerField
+    trabajoRemoto = models.DecimalField(max_digits=10 , decimal_places=2)
 
     class Meta:
        verbose_name = 'RegresionLineal'

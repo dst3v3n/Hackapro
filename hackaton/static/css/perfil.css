@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=DM+Serif+Text:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -219,3 +219,145 @@ header{
 .navegacion .submenu .hijos li a{
 	display: block;
 }
+
+.button1{
+    padding: 10px;
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: normal;;
+    font-size: 18px;
+    color: white;
+    border: #1D405C;
+    background-color:#1D405C;
+}
+  .form-register {
+    width: 400px;
+    background: #24303c;
+    padding: 30px;
+    margin:  auto;
+    margin-top: 50px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+  }
+
+  .form-register h4 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .controls {
+    width: 100%;
+    background: #24303c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #84649c;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: white;
+  }
+
+  .form-register p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+  }
+
+  .form-register a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .form-register a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
+  .form-register .botons {
+    width: 100%;
+    background: #84649c;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+  }
+
+.tooltip {
+
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    position: absolute;
+    transform: translate(345px,10px);
+    cursor: pointer;
+
+  }
+
+
+  .tooltip .tooltiptext {
+
+    visibility: hidden;
+
+    width: 120px;
+
+    background-color: #84649c;
+
+    color: #fff;
+
+    text-align: center;
+
+    padding: 5px 0;
+
+    border-radius: 6px;
+
+    position: absolute;
+
+    z-index: 1;
+
+    bottom: 125%;
+
+    left: 50%;
+
+    margin-left: -60px;
+
+  }
+
+
+  .tooltip .tooltiptext::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 50%;
+
+    margin-left: -5px;
+
+    border-width: 5px;
+
+    border-style: solid;
+
+    border-color: #555 transparent transparent transparent;
+
+  }
+
+
+  .tooltip:hover .tooltiptext {
+
+    visibility: visible;
+
+  }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] { -moz-appearance:textfield; }

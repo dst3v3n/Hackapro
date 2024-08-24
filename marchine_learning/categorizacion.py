@@ -4,21 +4,22 @@ def cargo_catego():
             "Administración y apoyo": 2,
             "Agricultura, silvicultura y pesca": 3,
             "Artes y recreación": 4,
-            "Construcción": 5,
-            "Educación y formación": 6,
-            "Electricidad, gas, agua y desechos": 7,
-            "Finanzas y seguros": 8,
-            "Atención de la salud y asistencia social": 9,
-            "Medios de información y telecomunicaciones": 10,
-            "Manufactura": 11,
-            "Minería": 12,
-            "Otros servicios": 13,
-            "Profesionales, científicos y técnicos": 14,
-            "Administración pública y seguridad": 15,
-            "Alquiler, arrendamiento y bienes raíces": 16,
-            "Comercio minorista": 17,
-            "Transporte, postal y almacenamiento": 18,
-            "Comercio mayorista": 19
+            "Salud" : 5,
+            "Construcción": 6,
+            "Educación y formación": 7,
+            "Electricidad, gas, agua y desechos": 8,
+            "Finanzas y seguros": 9,
+            "Atención de la salud y asistencia social": 10,
+            "Medios de información y telecomunicaciones": 11,
+            "Manufactura": 12,
+            "Minería": 13,
+            "Otros servicios": 14,
+            "Profesionales, científicos y técnicos": 15,
+            "Administración pública y seguridad": 16,
+            "Alquiler, arrendamiento y bienes raíces": 17,
+            "Comercio minorista": 18,
+            "Transporte, postal y almacenamiento": 19,
+            "Comercio mayorista": 20
     }
 
 def sector_catego():
@@ -70,7 +71,7 @@ def genero_catego ():
     return {
             "Masculino": 1,
             "Femenino": 2,
-            "Prefieron no decirlo": 3,
+            "Prefiero no decirlo": 3,
             "Otro": 4
         }
 

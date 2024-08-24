@@ -7,13 +7,6 @@ class Form_perfil (forms.ModelForm):
         exclude = ['myuser']
 
         widgets = {
-            'tiempoTrabajoRemota' : forms.NumberInput(attrs = {
-                'max' : 24, 
-                'min' : 0,
-                'class' : 'controls',
-                'step': '0.1',
-                'placeholder' : 'Ingresa las horas que trabajas'
-            }),
             'horasDomestica' : forms.NumberInput(attrs = {
                 'max' : 24, 
                 'min' : 0,
@@ -36,7 +29,6 @@ class Form_perfil (forms.ModelForm):
                 'placeholder' : 'Ingresa el tiempo de desplazamiento'
             }),
             'nucleo_familiar' : forms.Select(attrs = {'class' : 'controls'}),
-            'ocupacion_actual' : forms.Select(attrs = {'class' : 'controls'}),
             'cambios_trabajo' : forms.Select(attrs = {'class' : 'controls'}),
         }
 
@@ -47,10 +39,11 @@ class Form_trabajo (forms.ModelForm):
 
         widgets = {
             'tiempoDedicado' : forms.NumberInput(attrs = {
-                'max' : 1, 
+                'max' : 100, 
                 'min' : 0,
                 'class' : 'controls',
-                'step': '0.1',
                 'placeholder' : 'Ingresa el % de horas trabajadas en 3 meses'
             }),
+            'position' : forms.Select(attrs = {'class' : 'controls'}),
+            'sector' : forms.Select(attrs = {'class' : 'controls'}),
         }

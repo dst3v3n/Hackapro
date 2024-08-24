@@ -1,6 +1,7 @@
 from admins.models import Myuser
 from usuario.models import Trabajo , Perfil
 from .categorizacion import cargo_catego , sector_catego , genero_catego , nucleo_catego , respuesta_catego
+from .models import RegresionLineal , RegresionLogistica
 import joblib
 import numpy as np
 
@@ -21,7 +22,7 @@ class Modelo:
         tm_desplazamiento = data1.tiempoDesplazamiento
         t_casa = data1.horasDomestica
         t_familia = data1.horasPersonal
-        t_remoto_meses = data2.tiempoDedicado
+        t_remoto_meses = data2.tiempoDedicado/10
 
         ml = [[
             nacimiento, 
@@ -52,7 +53,11 @@ class Modelo:
 
         prediccion = model.predict(nuevos_datos_escalados)
  
-        print(f'Predicción de horas de trabajo remoto: {prediccion[0]}')
+        lineal = RegresionLineal(myuser_id = id_user, trabajoRemoto = np.round(prediccion[0] , 2))
+        lineal.save()
+
+        print(f'Predicción de horas de trabajo remoto: {np.round(prediccion[0] , 2)}')
+        
 
         #Logistica
         modelo_cargado = joblib.load('modelos/logistica/modelo_logistico.pkl')
@@ -66,5 +71,8 @@ class Modelo:
         predicciones_codificadas = modelo_cargado.predict(nuevos_datos_escalados)
          
         predicciones_decodificadas = codificador_etiquetas_cargado.inverse_transform(predicciones_codificadas)
+
+        logistica = RegresionLogistica(myuser_id = id_user , trabajoRemoto = predicciones_decodificadas[0])
+        logistica.save()
          
-        print(predicciones_decodificadas)
+        print(predicciones_decodificadas[0])

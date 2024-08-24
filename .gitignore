@@ -1,2 +1,10 @@
 env/
 hackaton/__pycache__/
+actividad/__pycache__/
+actividad/migrations/_pycache__/
+admins/__pycache__/
+admins/migrations/_pycache__/
+marchine_leaning/__pycache__/
+marchine_leaning/migrations/_pycache__/
+usuario/__pycache__/
+usuario/migrations/_pycache__/

@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=DM+Serif+Text:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: normal;
   }
 
   body {
@@ -144,58 +148,126 @@
 		width: 30px;
 	}
 }
-  .form-register {
-    width: 400px;
-    background: #24303c;
-    padding: 30px;
-    margin:  auto;
-    margin-top: 250px;
-    border-radius: 4px;
-    font-family: 'calibri';
-    color: white;
-    box-shadow: 7px 13px 37px #000;
+
+header{
+	width: 100%;
+	height: 90px;
+	background-color: #1D405C;
+}
+.interior{
+	max-width: 100%;
+	padding: 0 10px;
+	margin: auto;
+}
+.logo{
+    font-family: "Alfa Slab One", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+	float: left;
+	padding: 20px 20px 0 ;
+    text-decoration: none;
+    color: #84649c;
+}
+
+.navegacion{
+	float: right;
+	display: flex;
+	align-items: center;
+	min-height: 90px;
+	z-index: 1000;
+}
+.navegacion ul{
+	list-style: none;
+	padding: 0 10px;
+}
+.navegacion ul li{
+	display: inline-block;
+	position: relative;
+	transition: .3s linear;
+	z-index: 1000;
+}
+.navegacion ul li:hover{
+	transform: scale(1.1);
+}
+.navegacion ul li a{
+    text-decoration: none;
+	color: #ffffff;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 12px 25px;
+	transition: .3s linear;
+}
+.navegacion ul li a:hover{
+	color: #84649c;
+	transform: scale(1.1);
+}
+.navegacion ul li:hover .hijos{
+	display: block;
+}
+.navegacion .submenu .hijos{
+	display: none;
+	background: #1D405C;
+	position: absolute;
+	width: 100%;
+    border-radius: 20px;
+    margin-top: 11px;
+}
+.navegacion .submenu .hijos li{
+	display: block;
+	overflow: hidden;
+	border-bottom: none;
+}
+.navegacion .submenu .hijos li a{
+	display: block;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  .form-register h4 {
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-
-  .controls {
-    width: 100%;
-    background: #24303c;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid #84649c;
-    font-family: 'calibri';
-    font-size: 18px;
-    color: white;
-  }
-
-  .form-register p {
-    height: 40px;
+  .grid-item {
+    width: 50px ;
+    background-color: #84649c;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    width: calc(33% - 10px);
     text-align: center;
-    font-size: 18px;
-    line-height: 40px;
+  }
+  .boton_in {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .boton_tr {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
 
-  .form-register a {
+  .pagination {
+    text-align: center;
+  }
+
+  .step-links a, .step-links span {
     color: white;
     text-decoration: none;
+    padding: 5px;
+    border: 1px solid #84649c;
+    border-radius: 3px;
   }
 
-  .form-register a:hover {
-    color: white;
-    text-decoration: underline;
-  }
-
-  .form-register .botons {
-    width: 100%;
-    background: #84649c;
-    border: none;
-    padding: 12px;
-    color: white;
-    margin: 16px 0;
-    font-size: 16px;
+  .step-links a:hover, .step-links span.current {
+    background-color: #1D405C;
   }

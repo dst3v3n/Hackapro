@@ -90,7 +90,6 @@ class Archivo(LoginRequiredMixin , View):
             sheet = wb.active
             for row in sheet.iter_rows(values_only=True):
                 if isinstance(row[0] , int) == True and not row[0] == None:
-                    print(row)
                     actividad = Actividades(
                         myuser_id =  row[0],
                         actividad = row[1],
