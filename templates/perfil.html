@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="{% static 'css/login_us.css' %}">
+  <title>Perfil</title>
+
+  <style type="text/css">  
+
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
+      input[type=number] { -moz-appearance:textfield; }
+      
+      
+       input[type=date]::-webkit-inner-spin-button, 
+      input[type=date]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
+      input[type=date] { -moz-appearance:textfield; }
+
+    </style>
+  
+</head>
+<body class="hidden">
+    <div class="centrado" id="onload">
+        <div class="cssload-loader">HACKATON</div>
+    </div>
+
+    <div>
+      <form method = "post">
+      {% csrf_token %}
+        <input type="hidden" name="_method" value="CUENTA">
+        <input class = 'button1' type='submit' value='ELiminar cuenta'>
+      </form>
+    </div>
+
+  <form method = "post">   
+  {% csrf_token %}
+  {% if form_perfil.instance.id != None %}
+    <input type="hidden" name="_method" value="PUT">
+  {% endif %}
+  <section class="form-register">
+    <h4>Formulario perfil</h4>
+    {{form_perfil.nucleo_familiar}}
+    {{form_perfil.ocupacion_actual}}
+    {{form_perfil.fomenta_trabajo}}
+    {{form_perfil.cambios_trabajo}}
+    {{form_perfil.tiempoTrabajoRemota}}
+    {{form_perfil.horasDomestica}}
+    {{form_perfil.horasPersonal}}
+    {{form_trabajo.tiempoDedicado}}
+    {{form_trabajo.tiempoPreferido}}
+    {{form_trabajo.horasDedicada}}
+    <input class="botons" type="submit" value="Enviar">
+    {% if form_trabajo.instance.id %}
+    <input class="botons" type="submit" name='_method' value="Eliminar">
+    {% endif %}
+  </section>
+  </form>
+    
+  <script src="/static/js/vista_password.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/static/js/loader.js"></script>
+</body>
+</html>

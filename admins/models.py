@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager , AbstractUser
-from .select import select 
+from .select import cargo , sector , genero , type_user
 
 class MyUserManager (BaseUserManager):
     def create_user (self , email , password = None , **extra_fields ):
@@ -28,10 +28,11 @@ class Myuser (AbstractUser):
     email = models.EmailField (verbose_name = 'Dirección electronico' , max_length = 255 ,unique = True)
     name = models.CharField (max_length = 25 , blank = False , null = False)
     last_name = models.CharField (max_length = 25 , blank = False , null = False)
-    position = models.CharField (max_length = 65 , choices = select.cargo() , blank = False, null = False)
-    gender = models.CharField (max_length = 30 , choices = select.genero() , blank = False , null = False)
-    birthdate = models.DateField (blank = True , null = False)
-    sector = models.CharField (max_length = 65 , choices = select.sector() , blank = False , null = False)
+    position = models.CharField (max_length = 105 , choices = cargo() , default = '' , null = True)
+    gender = models.CharField (max_length = 30 , choices = genero() , default = 'Prefiero no decirlo' , blank = False , null = False)
+    birthdate = models.DateField (blank = True , null = True)
+    sector = models.CharField (max_length = 105 , choices = sector() , default = '' , null = True)
+    type_user = models.CharField (max_length = 50 , blank = False , null = False , choices = type_user() , default = 'User')
     username = None
     first_name = None
     date_joined = None
@@ -42,7 +43,7 @@ class Myuser (AbstractUser):
     objects = MyUserManager ()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = ['name' , 'type_user']
 
     def __str__(self):
         return self.name
@@ -58,7 +59,7 @@ class Myuser (AbstractUser):
         return self.is_admin
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
-        db_table = 'Users'
+        verbose_name = 'admin'
+        verbose_name_plural = 'admins'
+        db_table = 'admins'
         ordering = ['email' , '-name']

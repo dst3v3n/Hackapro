@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'actividad.apps.ActividadConfig',
     'admins.apps.AdminsConfig',
+    'marchine_learning.apps.MarchineLearningConfig',
+    'usuario.apps.UsuarioConfig',
     'sweetify',
 ]
 
@@ -80,12 +82,10 @@ DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "hackaton",
-        #"USER": "root",
-        "USER": "admin",
+        "USER": "root",
         #"PASSWORD": "",
-        "PASSWORD": "hackaton",
-        "HOST": "hackaton.cxpkmdizoqk2.us-east-1.rds.amazonaws.com",
-        # "HOST": "127.0.0.1",
+        "PASSWORD": "root",
+        "HOST": "127.0.0.1",
         #"PORT": "3306",   }
         "PORT": "3306",   }
 }

@@ -7,7 +7,27 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="{% static 'css/login_us.css' %}">
-  <title>Formulario Registro</title>
+  <title>Login</title>
+
+  <style type="text/css">  
+
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
+      input[type=number] { -moz-appearance:textfield; }
+      
+      
+       input[type=date]::-webkit-inner-spin-button, 
+      input[type=date]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
+      input[type=date] { -moz-appearance:textfield; }
+
+    </style>
+  
 </head>
 <body class="hidden">
     <div class="centrado" id="onload">
@@ -15,11 +35,11 @@
     </div>
 
   <form method = "post">   
+  {% csrf_token %}
   <section class="form-register">
     <h4>Formulario Login</h4>
 
     {{form_login.email}}
-    {% csrf_token %}
     <span class="Eye">
         <i class="bx bx-hide"></i>
     </span>

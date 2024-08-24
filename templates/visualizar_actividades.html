@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{% static 'css/visualizar_actividad.css' %}">
+  <title>Actividades</title>
+</head>
+<body class="hidden">
+  <div class="centrado" id="onload">
+        <div class="cssload-loader">HACKATON</div>
+  </div>
+
+  <div class="pagination">
+    {% for Actividades in page_obj %}
+    <div class="container">
+      <h4>{{ Actividades.actividad }}</h4>              
+      <h4>{{ Actividades.descripcion }}</h4>
+      {% if Actividades.proceso == 'Terminado' %}
+        <h4>{{ Actividades.dateInicio }}</h4>
+        <h4>{{ Actividades.dateFin }}</h4>
+        <h4>{{ Actividades.tiempo_formateado }}</h4>
+      {% elif Actividades.proceso == 'En proceso' %}
+        <h4>{{ Actividades.dateInicio }}</h4>
+      {% endif %}
+    </div>
+  {% if Actividades.proceso == 'Sin iniciar' %}
+  <form method = 'post'>
+  {% csrf_token %}
+      <input type = 'hidden' name = 'id' value = '{{Actividades.id}}'>
+      <input class = 'botons' type = 'submit' value = 'Iniciar'>
+  </form>
+  {% elif Actividades.proceso == 'En proceso' %}
+  <form method = 'post'>
+  {% csrf_token %}
+      <input type = 'hidden' name='_method' value = 'PUT'>
+      <input type = 'hidden' name = 'id' value = '{{Actividades.id}}'>
+      <input class = 'botons' type = 'submit' value = 'Terminar'>
+  </form>
+  {% endif %}
+
+  {% endfor %}
+  
+    <br>
+
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        {% if page_obj.paginator.num_pages > 1 %}
+            {% for page_number in page_obj.paginator.page_range %}
+                {% if page_number == page_obj.number %}
+                    <span class="current">{{ page_number }}</span>
+                {% elif page_number > page_obj.number|add:-3 and page_number < page_obj.number|add:3 %}
+                    <a href="?page={{ page_number }}" class="current">{{ page_number }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %} </span> </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/static/js/loader.js"></script>
+</body>
+</html>

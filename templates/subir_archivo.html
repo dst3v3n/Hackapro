@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{% static 'css/from_registro_activity.css' %}">
+  <title>Subida archivo</title>
+</head>
+<body class="hidden">
+  <div class="centrado" id="onload">
+        <div class="cssload-loader">HACKATON</div>
+  </div>
+
+  <form method = 'post' enctype="multipart/form-data">
+  {% csrf_token %}
+  <section class="form-register">
+    {{form.as_p}}
+    <br>
+    <br>
+    <br>
+    <input class="botons" type="submit" value="Subir">
+  </section>
+  </form>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="/static/js/loader.js"></script>
+</body>
+</html>
+

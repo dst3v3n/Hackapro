@@ -6,6 +6,8 @@ from django.core.exceptions import ValidationError
 import sweetify
 from django.contrib.auth import authenticate, logout , get_user_model
 from django.contrib.auth import login as auth_login
+from usuario.forms import Form_perfil
+from django.contrib import admin
 
 class index (View):
     template_name = 'index.html'
@@ -41,7 +43,8 @@ class login (View):
     template_name = 'login_us.html'
 
     def get (self , request):
-        context = {'form_login' : Form_login}        
+        context = {'form_login' : Form_login,
+                   'form' : Form_perfil}        
         return render (request, self.template_name , context)
 
     def post (self, request):
@@ -59,3 +62,6 @@ class logout_view (View):
     def get(self, request):
         logout(request)
         return redirect('index')
+
+def admin_link (self, request):
+    return (request , admin.site.urls)

@@ -19,6 +19,14 @@
     {% csrf_token %}
     <section class="form-register">
     <h4>Formulario Registro</h4>
+    {% if request.user.type_user ==  'Admin' or  request.user.type_user == 'Superuser' %}
+    {{form_register.name}}
+    {{form_register.last_name}}
+    {{form_register.gender}}
+    {{form_register.birthdate}}
+    {{form_register.email}}
+
+    {% elif not request.user.type_user %}
     {{form_register.name}}
     {{form_register.last_name}}
     {{form_register.position}}
@@ -26,6 +34,8 @@
     {{form_register.sector}}
     {{form_register.birthdate}}
     {{form_register.email}}
+    {% endif %}
+
     <span class="Eye2">
         <i class="bx bx-hide"></i>
     </span>
@@ -35,8 +45,7 @@
         </span>
     {{form_register.password2}}
     <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
-    <input type="checkbox" name="mi_checkbox" id="mi_checkbox" class="checkbox">
-    <input class="botons" type="submit" value="Registrar">
+    {{form_register.check}} <input class="botons" type="submit" value="Registrar">
     <p><a href="{% url 'login' %}">¿Ya tengo Cuenta?</a></p>
     </section>
     </form>

@@ -1,0 +1,9 @@
+sudo dnf update -y
+sudo dnf install mariadb105
+sudo dnf install git
+sudo dnf install python
+sudo dnf install pip
+pip install -r requirements.txt
+wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+sudo yum localinstall mysql80-community-release-el7-3.noarch.rpm
+sudo yum install -y mysql-community-devel
