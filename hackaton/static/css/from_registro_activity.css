@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -144,6 +145,82 @@
 		width: 30px;
 	}
 }
+
+header{
+	width: 100%;
+	height: 90px;
+	background-color: #1D405C;
+}
+.interior{
+	max-width: 100%;
+	padding: 0 10px;
+	margin: auto;
+}
+.logo{
+    font-family: "Alfa Slab One", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+	float: left;
+	padding: 20px 20px 0 ;
+    text-decoration: none;
+    color: #84649c;
+}
+
+.navegacion{
+	float: right;
+	display: flex;
+	align-items: center;
+	min-height: 90px;
+	z-index: 1000;
+}
+.navegacion ul{
+	list-style: none;
+	padding: 0 10px;
+}
+.navegacion ul li{
+	display: inline-block;
+	position: relative;
+	transition: .3s linear;
+	z-index: 1000;
+}
+.navegacion ul li:hover{
+	transform: scale(1.1);
+}
+.navegacion ul li a{
+    text-decoration: none;
+	color: #ffffff;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 12px 25px;
+	transition: .3s linear;
+}
+.navegacion ul li a:hover{
+	color: #84649c;
+	transform: scale(1.1);
+}
+.navegacion ul li:hover .hijos{
+	display: block;
+}
+.navegacion .submenu .hijos{
+	display: none;
+	background: #1D405C;
+	position: absolute;
+	width: 100%;
+    border-radius: 20px;
+    margin-top: 11px;
+}
+.navegacion .submenu .hijos li{
+	display: block;
+	overflow: hidden;
+	border-bottom: none;
+}
+.navegacion .submenu .hijos li a{
+	display: block;
+}
+
   .form-register {
     width: 400px;
     background: #24303c;

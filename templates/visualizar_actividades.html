@@ -13,58 +13,93 @@
         <div class="cssload-loader">HACKATON</div>
   </div>
 
-  <div class="pagination">
-    {% for Actividades in page_obj %}
-    <div class="container">
-      <h4>{{ Actividades.actividad }}</h4>              
-      <h4>{{ Actividades.descripcion }}</h4>
-      {% if Actividades.proceso == 'Terminado' %}
-        <h4>{{ Actividades.dateInicio }}</h4>
-        <h4>{{ Actividades.dateFin }}</h4>
-        <h4>{{ Actividades.tiempo_formateado }}</h4>
-      {% elif Actividades.proceso == 'En proceso' %}
-        <h4>{{ Actividades.dateInicio }}</h4>
-      {% endif %}
+  <header>
+    <div class="interior">
+      <a href="{% url 'index' %}" class="logo" target="blank">HACKATON</a>
+      <nav class="navegacion">
+        <ul>
+          {% if request.user.id != None %}
+          {% if request.user.type_user !=  'User' %}
+          <li><a href="">Analisis</a></li>
+          {% endif %}
+          {% if request.user.type_user == 'Superuser' %}
+          <li><a href="{% url 'admin_link' %}">Administrador</a></li>
+          {% endif %}
+          <li><a href="{% url 'index' %}">Inicio</a></li>
+          <li><a href="{% url 'perfil_user' %}">Perfil</a></li>
+          <li class="submenu">
+            <a href="{% url 'visualizar_actividad' %}" >Actividades</a>
+            <ul class="hijos">
+              <li><a href="{% url 'registro_actividad' %}">Registro de actividades</a></li>
+              <li><a href="{% url 'archivo' %}">subir actividades</a></li>
+            </ul>
+          </li>
+          <li>
+          {% else %}
+          <li><a href="{% url 'registro' %}">Registro</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+      </nav>
     </div>
-  {% if Actividades.proceso == 'Sin iniciar' %}
-  <form method = 'post'>
-  {% csrf_token %}
-      <input type = 'hidden' name = 'id' value = '{{Actividades.id}}'>
-      <input class = 'botons' type = 'submit' value = 'Iniciar'>
-  </form>
-  {% elif Actividades.proceso == 'En proceso' %}
-  <form method = 'post'>
-  {% csrf_token %}
-      <input type = 'hidden' name='_method' value = 'PUT'>
-      <input type = 'hidden' name = 'id' value = '{{Actividades.id}}'>
-      <input class = 'botons' type = 'submit' value = 'Terminar'>
-  </form>
-  {% endif %}
+  </header>
 
-  {% endfor %}
-  
+
+  <br><br><br><br>
+  <div class="grid-container">
+    {% for Actividades in page_obj %}
+      <div class="grid-item">
+        <h4>{{ Actividades.actividad }}</h4>
+        <h4>{{ Actividades.descripcion }}</h4>
+        {% if Actividades.proceso == 'Terminado' %}
+          <h4>{{ Actividades.dateInicio }}</h4>
+          <h4>{{ Actividades.dateFin }}</h4>
+          <h4>{{ Actividades.tiempo_formateado }}</h4>
+        {% elif Actividades.proceso == 'En proceso' %}
+          <h4>{{ Actividades.dateInicio }}</h4>
+        {% endif %}
+        {% if Actividades.proceso == 'Sin iniciar' %}
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ Actividades.id }}">
+            <input class="boton_in" type="submit" value="Iniciar">
+          </form>
+        {% elif Actividades.proceso == 'En proceso' %}
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="id" value="{{ Actividades.id }}">
+            <input class="boton_tr" type="submit" value="Terminar">
+          </form>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
     <br>
-
-    <span class="step-links">
-        {% if page_obj.has_previous %}
+    <div class="pagination">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+          {% endif %}
 
-        {% if page_obj.paginator.num_pages > 1 %}
+          {% if page_obj.paginator.num_pages > 1 %}
             {% for page_number in page_obj.paginator.page_range %}
-                {% if page_number == page_obj.number %}
-                    <span class="current">{{ page_number }}</span>
-                {% elif page_number > page_obj.number|add:-3 and page_number < page_obj.number|add:3 %}
-                    <a href="?page={{ page_number }}" class="current">{{ page_number }}</a>
-                {% endif %}
+              {% if page_number == page_obj.number %}
+                <span class="current">{{ page_number }}</span>
+              {% elif page_number > page_obj.number|add:-3 and page_number < page_obj.number|add:3 %}
+                <a href="?page={{ page_number }}" class="current">{{ page_number }}</a>
+              {% endif %}
             {% endfor %}
-        {% endif %}
+          {% endif %}
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %} </span> </div>
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="next">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="last">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/static/js/loader.js"></script>
 </body>

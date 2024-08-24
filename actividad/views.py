@@ -21,7 +21,7 @@ class registro_actividad (LoginRequiredMixin , View):
             return render(request , self.template_name, context)
         else:
             return redirect ('perfil_user')
-    
+
     def post (self, request):
         form = Form_actividad(request.POST)
         if form.is_valid():
@@ -33,7 +33,7 @@ class registro_actividad (LoginRequiredMixin , View):
 class visualizar_actividad (LoginRequiredMixin , ListView):
     model = Actividades
     template_name = 'visualizar_actividades.html'
-    paginate_by = 5
+    paginate_by = 12
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -47,25 +47,25 @@ class visualizar_actividad (LoginRequiredMixin , ListView):
             'id'
         )
         return qs
-    
+
     def post(self , request):
         if request.POST.get('_method') == 'PUT':
             return self.put(request)
         else:
             dateInicio = timezone.now()
             Actividades.objects.filter(pk=request.POST.get('id')).update(
-                dateInicio=dateInicio, 
+                dateInicio=dateInicio,
                 proceso="En proceso",
             )
             return redirect('visualizar_actividad')
-    
+
     def put (self, request):
         dateFin = timezone.now()
         boolean = True
-        actividad = Actividades.objects.get(pk = request.POST.get('id')) 
+        actividad = Actividades.objects.get(pk = request.POST.get('id'))
         diferencia = dateFin - actividad.dateInicio
         Actividades.objects.filter(pk=request.POST.get('id')).update(
-            dateFin=dateFin, 
+            dateFin=dateFin,
             proceso='Terminado',
             tiempo = diferencia
         )
@@ -73,7 +73,7 @@ class visualizar_actividad (LoginRequiredMixin , ListView):
 
 class Archivo(LoginRequiredMixin , View):
     template_name = 'subir_archivo.html'
-    form_class = Form_archivo 
+    form_class = Form_archivo
 
     def get (self , request):
         if Perfil.objects.filter(myuser_id = self.request.user.id).exists():

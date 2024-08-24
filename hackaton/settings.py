@@ -83,9 +83,9 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "hackaton",
         "USER": "root",
-        #"PASSWORD": "",
-        "PASSWORD": "root",
-        "HOST": "127.0.0.1",
+        "PASSWORD": "",
+        # "PASSWORD": "root",
+        "HOST": "localhost",
         #"PORT": "3306",   }
         "PORT": "3306",   }
 }
@@ -140,4 +140,3 @@ AUTH_USER_MODEL = 'admins.Myuser'
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
-

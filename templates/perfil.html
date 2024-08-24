@@ -5,59 +5,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/1353faa81f.js" crossorigin="anonymous"></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="{% static 'css/login_us.css' %}">
+  <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
   <title>Perfil</title>
 
-  <style type="text/css">  
+  <style type="text/css">
 
-      input[type=number]::-webkit-inner-spin-button, 
-      input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
       }
       input[type=number] { -moz-appearance:textfield; }
-      
-      
-       input[type=date]::-webkit-inner-spin-button, 
-      input[type=date]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
+
+
+       input[type=date]::-webkit-inner-spin-button,
+      input[type=date]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
       }
       input[type=date] { -moz-appearance:textfield; }
 
     </style>
-  
+
 </head>
 <body class="hidden">
     <div class="centrado" id="onload">
         <div class="cssload-loader">HACKATON</div>
     </div>
+    <header>
+        <div class="interior">
+          <a href="{% url 'index' %}" class="logo" target="blank">HACKATON</a>
+          <nav class="navegacion">
+            <ul>
+              {% if request.user.id != None %}
+              {% if request.user.type_user !=  'User' %}
+              <li><a href="">Analisis</a></li>
+              {% endif %}
+              {% if request.user.type_user == 'Superuser' %}
+              <li><a href="{% url 'admin_link' %}">Administrador</a></li>
+              {% endif %}
+              <li><a href="{% url 'index' %}">Inicio</a></li>
+              <li><a href="{% url 'perfil_user' %}">Perfil</a></li>
+              <li class="submenu">
+                <a href="{% url 'visualizar_actividad' %}" >Actividades</a>
+                <ul class="hijos">
+                  <li><a href="{% url 'registro_actividad' %}">Registro de actividades</a></li>
+                  <li><a href="{% url 'archivo' %}">subir actividades</a></li>
+                </ul>
+              </li>
+              <li>
+                <div>
+                    <form method = "post">
+                    {% csrf_token %}
+                      <input type="hidden" name="_method" value="CUENTA">
+                      <input class = 'button1' type='submit' value='ELIMINAR CUENTA'>
+                    </form>
+                  </div>
+              </li>
 
-    <div>
-      <form method = "post">
-      {% csrf_token %}
-        <input type="hidden" name="_method" value="CUENTA">
-        <input class = 'button1' type='submit' value='ELiminar cuenta'>
-      </form>
-    </div>
+              {% else %}
+              <li><a href="{% url 'registro' %}">Registro</a></li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </header>
 
-  <form method = "post">   
+  <form method = "post">
   {% csrf_token %}
   {% if form_perfil.instance.id != None %}
     <input type="hidden" name="_method" value="PUT">
   {% endif %}
   <section class="form-register">
     <h4>Formulario perfil</h4>
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle"style="color:#84649c ;"></i>
+    </div>
     {{form_perfil.nucleo_familiar}}
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle"style="color:#84649c ;"></i>
+    </div>
     {{form_perfil.ocupacion_actual}}
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle"style="color:#84649c ;"></i>
+    </div>
     {{form_perfil.fomenta_trabajo}}
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle"style="color:#84649c ;"></i>
+    </div>
     {{form_perfil.cambios_trabajo}}
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle"style="color:#84649c ;"></i>
+    </div>
     {{form_perfil.tiempoTrabajoRemota}}
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle"style="color: #84649c;"></i>
+    </div>
     {{form_perfil.horasDomestica}}
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle"style="color:#84649c ;"></i>
+    </div>
     {{form_perfil.horasPersonal}}
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle"style="color:#84649c ;"></i>
+    </div>
     {{form_trabajo.tiempoDedicado}}
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle"style="color:#84649c ;"></i>
+    </div>
     {{form_trabajo.tiempoPreferido}}
+    <div class="tooltip">
+        <span class="tooltiptext">Ingrese su nombre de usuario para acceder al sistema.</span>
+        <i class="fas fa-question-circle " style="color:#84649c;"></i>
+    </div>
     {{form_trabajo.horasDedicada}}
     <input class="botons" type="submit" value="Enviar">
     {% if form_trabajo.instance.id %}
@@ -65,7 +137,7 @@
     {% endif %}
   </section>
   </form>
-    
+
   <script src="/static/js/vista_password.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/static/js/loader.js"></script>
