@@ -40,9 +40,7 @@ class Perfil_view (View):
             form_perfil = Form_perfil (request.POST)
             form_trabajo = Form_trabajo (request.POST)
             if form_perfil.is_valid ():
-                print("hola")
                 if form_trabajo.is_valid ():
-                    print("hola")
                     info_perfil = form_perfil.save (commit = False)
                     info_perfil.myuser_id = self.request.user.id
                     info_perfil.save()

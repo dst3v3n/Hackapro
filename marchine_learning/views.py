@@ -41,11 +41,10 @@ class Modelo:
 
     def conexion (self , id_user : int):
         # Lineal
-        ### Guardar los datos en una variable y que sean de dos decimales
         datos = Modelo.categoria_ml(self , id_user)
 
         model = joblib.load('modelos/lineal/modelo_productividad.pkl')
-        nuevos_datos = np.array(datos)  # Sustituye con tus valores
+        nuevos_datos = np.array(datos)
 
         scaler = joblib.load('modelos/lineal/escalador_lineal.pkl')
 
@@ -56,8 +55,6 @@ class Modelo:
         lineal = RegresionLineal(myuser_id = id_user, trabajoRemoto = np.round(prediccion[0] , 2))
         lineal.save()
 
-        print(f'Predicción de horas de trabajo remoto: {np.round(prediccion[0] , 2)}')
-        
 
         #Logistica
         modelo_cargado = joblib.load('modelos/logistica/modelo_logistico.pkl')
@@ -74,5 +71,3 @@ class Modelo:
 
         logistica = RegresionLogistica(myuser_id = id_user , trabajoRemoto = predicciones_decodificadas[0])
         logistica.save()
-         
-        print(predicciones_decodificadas[0])
