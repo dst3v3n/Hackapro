@@ -1,7 +1,6 @@
-[submodule "modelos/modelos_prediccion"]
-path = modelos/modelos_prediccion
-url = https://github.com/dst3v3n/Modelos-AI
-
 [submodule "arquitectura_aws"]
-path = arquitectura_aws
-url = https://github.com/dst3v3n/Infraestructura-aws
+	path = arquitectura_aws
+	url = https://github.com/dst3v3n/Infraestructura-aws
+[submodule "modelos/modelos_prediccion"]
+	path = modelos/modelos_prediccion
+	url = https://github.com/dst3v3n/Modelos-AI
