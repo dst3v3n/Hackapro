@@ -56,7 +56,6 @@ class UserAdmin (BaseUserAdmin):
         (None, {"fields": ["email", "password"]}),
         ("Personal info", {"fields": ['name' , 'last_name' , 'birthdate', 'gender']}),
         ("Typer", {"fields": ['type_user']}),
-        ("Company", {"fields": ['sector', 'position']}),
         ("Permissions", {"fields": ["is_admin"]}),
     ]
 

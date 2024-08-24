@@ -48,7 +48,7 @@ class Perfil_view (View):
                     info_trabajo = form_trabajo.save(commit = False)
                     info_trabajo.myuser_id = self.request.user.id
                     info_trabajo.save ()
-                    Modelo.categoria(self , self.request.user.id)
+                    Modelo.conexion(self , self.request.user.id)
 
                     return redirect ('perfil_user')
 
@@ -73,6 +73,7 @@ class Perfil_view (View):
             return redirect ('perfil_user')
 
     def delete (self, request):
+        # Eliminar los datos en los modelos de prediccion
        perfil = Perfil.objects.get(myuser_id = self.request.user.id)
        perfil.delete()
 

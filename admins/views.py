@@ -21,7 +21,6 @@ class Register_admin (LoginRequiredMixin , View):
     
     def post(self , request):
         print('hola')
-        email = request.POST ['email']
         password1 = request.POST ['password1']
         password2 = request.POST ['password2']
         form = Form_admin(request.POST)

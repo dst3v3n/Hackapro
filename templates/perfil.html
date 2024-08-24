@@ -50,15 +50,11 @@
   <section class="form-register">
     <h4>Formulario perfil</h4>
     {{form_perfil.nucleo_familiar}}
-    {{form_perfil.ocupacion_actual}}
-    {{form_perfil.fomenta_trabajo}}
+    {{form_perfil.tiempoDesplazamiento}}
     {{form_perfil.cambios_trabajo}}
-    {{form_perfil.tiempoTrabajoRemota}}
     {{form_perfil.horasDomestica}}
     {{form_perfil.horasPersonal}}
     {{form_trabajo.tiempoDedicado}}
-    {{form_trabajo.tiempoPreferido}}
-    {{form_trabajo.horasDedicada}}
     <input class="botons" type="submit" value="Enviar">
     {% if form_trabajo.instance.id %}
     <input class="botons" type="submit" name='_method' value="Eliminar">

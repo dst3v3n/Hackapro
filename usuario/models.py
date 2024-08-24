@@ -10,12 +10,10 @@ class Perfil (models.Model):
         models.CASCADE
     )
     nucleo_familiar = models.CharField(max_length = 50, choices = nucleo() , default = '' , blank = False , null = False) 
-    ocupacion_actual = models.CharField(max_length = 40 , choices = ocupacion_actual() , default = 'Trabajador' , blank = False , null = False)
-    fomenta_trabajo = models.CharField(max_length = 40 , choices = respuesta() , default = 'Muy probable' , blank = False , null = False)
     cambios_trabajo = models.CharField(max_length = 40 , choices = respuesta() , default = 'Muy probable' , blank = False , null = False)
-    tiempoTrabajoRemota = models.IntegerField()
-    horasDomestica = models.IntegerField()
-    horasPersonal = models.IntegerField()
+    tiempoDesplazamiento = models.DecimalField(max_digits=10, decimal_places=1)
+    horasDomestica = models.DecimalField(max_digits=10, decimal_places=1)
+    horasPersonal = models.DecimalField(max_digits=10, decimal_places=1)
     
     class Meta:
         verbose_name = 'perfil'
@@ -28,9 +26,9 @@ class Trabajo (models.Model):
         Myuser,
         models.CASCADE
     )
-    tiempoDedicado = models.IntegerField ()
-    tiempoPreferido = models.IntegerField ()
-    horasDedicada = models.IntegerField ()
+    tiempoDedicado = models.DecimalField(max_digits=10, decimal_places=1)
+    position = models.CharField (max_length = 105 , choices = cargo() , default = '' , null = True)
+    sector = models.CharField (max_length = 105 , choices = sector() , default = '' , null = True)
 
     class Meta:
         verbose_name = 'trabajo'

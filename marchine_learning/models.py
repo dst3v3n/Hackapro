@@ -1,29 +1,40 @@
 from django.db import models
 from admins.models import Myuser
-from .categorizacion import cargo_catego , sector_catego , genero_catego , nucleo_catego , ocupacionActual_catego , respuesta_catego
-from usuario.models import Trabajo , Perfil
-from admins.models import Myuser
 
 # Create your models here.
 
-class Machine (models.Model):
+class RegresionLogistica (models.Model):
     myuser = models.OneToOneField (
         Myuser,
         models.CASCADE
     )
-    horasDomestica = models.IntegerField()
-    tiempoDedicado = models.IntegerField()
-    tiempoPreferido = models.IntegerField()
-    horasDedicada = models.IntegerField()
+    trabajoRemoto = models.CharField(max_length = 35 , blank = False , null = False)
+    trabajoRemotoMeses = models.IntegerField()
+    tiempoFamilia = models.IntegerField()
+    tiempoCasa = models.IntegerField()
+    tiempoDesplazamiento = models.IntegerField()
+    fomentaCambioRemoto = models.IntegerField()
 
     class Meta:
-       verbose_name = 'Machine'
-       verbose_name_plural = 'Machines'
-       db_table = 'Machines'
+       verbose_name = 'RegresionLogistica'
+       verbose_name_plural = 'RegresionesLogisticas'
+       db_table = 'RegresionLogistica'
        ordering = ['myuser' , '-myuser']
 
-class Modelo:
-    def categoria (self, id_user : int):
-        data = Myuser.objects.filter(id_user).first()
-        print(data)
-        cargo = cargo_catego()[0]['']
+class RegresionLineal (models.Model):
+    myuser = models.OneToOneField (
+        Myuser,
+        models.CASCADE
+    )
+    trabajoRemoto = models.IntegerField
+    trabajoRemotoMeses = models.IntegerField()
+    tiempoFamilia = models.IntegerField()
+    tiempoCasa = models.IntegerField()
+    tiempoDesplazamiento = models.IntegerField()
+    fomentaCambioRemoto = models.IntegerField()
+
+    class Meta:
+       verbose_name = 'RegresionLineal'
+       verbose_name_plural = 'RegresionesLineales'
+       db_table = 'RegresionLineal'
+       ordering = ['myuser' , '-myuser']

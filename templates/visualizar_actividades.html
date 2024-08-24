@@ -16,7 +16,7 @@
   <div class="pagination">
     {% for Actividades in page_obj %}
     <div class="container">
-      <h4>{{ Actividades.actividad }}</h4>              
+      <h4>{{ Actividades.actividad }}</h4>
       <h4>{{ Actividades.descripcion }}</h4>
       {% if Actividades.proceso == 'Terminado' %}
         <h4>{{ Actividades.dateInicio }}</h4>
@@ -42,7 +42,7 @@
   {% endif %}
 
   {% endfor %}
-  
+
     <br>
 
     <span class="step-links">

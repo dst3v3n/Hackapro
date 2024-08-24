@@ -19,23 +19,11 @@
     {% csrf_token %}
     <section class="form-register">
     <h4>Formulario Registro</h4>
-    {% if request.user.type_user ==  'Admin' or  request.user.type_user == 'Superuser' %}
     {{form_register.name}}
     {{form_register.last_name}}
     {{form_register.gender}}
     {{form_register.birthdate}}
     {{form_register.email}}
-
-    {% elif not request.user.type_user %}
-    {{form_register.name}}
-    {{form_register.last_name}}
-    {{form_register.position}}
-    {{form_register.gender}}
-    {{form_register.sector}}
-    {{form_register.birthdate}}
-    {{form_register.email}}
-    {% endif %}
-
     <span class="Eye2">
         <i class="bx bx-hide"></i>
     </span>

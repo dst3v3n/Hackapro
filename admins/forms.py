@@ -9,7 +9,7 @@ class Form_myuser (UserCreationForm):
     check = forms.BooleanField(required = True , widget = forms.CheckboxInput(attrs={'class' : 'checkbox'}))
     class Meta:
         model = Myuser
-        fields = ['name' , 'last_name' , 'position' , 'gender' , 'birthdate', 'sector' , 'email'] 
+        fields = ['name' , 'last_name' , 'gender' , 'birthdate' , 'email'] 
 
         widgets = {
             'name' : forms.TextInput(attrs = {
@@ -22,11 +22,7 @@ class Form_myuser (UserCreationForm):
                 'placeholder' : 'Ingrese su Apellido'
             }),
 
-            'position' : forms.Select(attrs = {'class' : 'controls'}),
-
             'gender' : forms.Select(attrs = {'class' : 'controls'}),
-
-            'sector' : forms.Select(attrs = {'class' : 'controls'}),
 
             'birthdate' : Date(attrs = {'class' : 'controls'}),
 

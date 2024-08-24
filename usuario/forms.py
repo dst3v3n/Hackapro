@@ -11,23 +11,32 @@ class Form_perfil (forms.ModelForm):
                 'max' : 24, 
                 'min' : 0,
                 'class' : 'controls',
+                'step': '0.1',
                 'placeholder' : 'Ingresa las horas que trabajas'
             }),
             'horasDomestica' : forms.NumberInput(attrs = {
                 'max' : 24, 
                 'min' : 0,
                 'class' : 'controls',
+                'step': '0.1',
                 'placeholder' : 'Ingresa las horas haciendo labores domesticos'
             }),
             'horasPersonal' : forms.NumberInput(attrs = {
                 'max' : 24, 
                 'min' : 0,
                 'class' : 'controls',
+                'step': '0.1',
                 'placeholder' : 'Ingresa las horas personales'
+            }),
+            'tiempoDesplazamiento' : forms.NumberInput(attrs = {
+                'max' : 24, 
+                'min' : 0,
+                'class' : 'controls',
+                'step': '0.1',
+                'placeholder' : 'Ingresa el tiempo de desplazamiento'
             }),
             'nucleo_familiar' : forms.Select(attrs = {'class' : 'controls'}),
             'ocupacion_actual' : forms.Select(attrs = {'class' : 'controls'}),
-            'fomenta_trabajo' : forms.Select(attrs = {'class' : 'controls'}),
             'cambios_trabajo' : forms.Select(attrs = {'class' : 'controls'}),
         }
 
@@ -38,21 +47,10 @@ class Form_trabajo (forms.ModelForm):
 
         widgets = {
             'tiempoDedicado' : forms.NumberInput(attrs = {
-                'max' : 100, 
+                'max' : 1, 
                 'min' : 0,
                 'class' : 'controls',
+                'step': '0.1',
                 'placeholder' : 'Ingresa el % de horas trabajadas en 3 meses'
-            }),
-            'tiempoPreferido' : forms.NumberInput(attrs = {
-                'max' : 100, 
-                'min' : 0,
-                'class' : 'controls',
-                'placeholder' : 'Ingresa tu hora preferida para trabajar'
-            }),
-            'horasDedicada' : forms.NumberInput(attrs = {
-                'max' : 100, 
-                'min' : 0,
-                'class' : 'controls',
-                'placeholder' : 'Horas dedicadas al trabajo'
             }),
         }
