@@ -8,25 +8,25 @@ class Form_perfil (forms.ModelForm):
 
         widgets = {
             'horasDomestica' : forms.NumberInput(attrs = {
-                'max' : 24, 
+                'max' : 24,
                 'min' : 0,
                 'class' : 'controls',
                 'step': '0.1',
-                'placeholder' : 'Ingresa las horas haciendo labores domesticos'
+                'placeholder' : 'horas en promedio dedicadas a labores domesticas'
             }),
             'horasPersonal' : forms.NumberInput(attrs = {
-                'max' : 24, 
+                'max' : 24,
                 'min' : 0,
                 'class' : 'controls',
                 'step': '0.1',
-                'placeholder' : 'Ingresa las horas personales'
+                'placeholder' : 'horas en promedio dedicadas a labores personales'
             }),
             'tiempoDesplazamiento' : forms.NumberInput(attrs = {
-                'max' : 24, 
+                'max' : 24,
                 'min' : 0,
                 'class' : 'controls',
                 'step': '0.1',
-                'placeholder' : 'Ingresa el tiempo de desplazamiento'
+                'placeholder' : 'horas en promedio dedicadas a desplazarse'
             }),
             'nucleo_familiar' : forms.Select(attrs = {'class' : 'controls'}),
             'cambios_trabajo' : forms.Select(attrs = {'class' : 'controls'}),
@@ -39,10 +39,10 @@ class Form_trabajo (forms.ModelForm):
 
         widgets = {
             'tiempoDedicado' : forms.NumberInput(attrs = {
-                'max' : 100, 
+                'max' : 100,
                 'min' : 0,
                 'class' : 'controls',
-                'placeholder' : 'Ingresa el % de horas trabajadas en 3 meses'
+                'placeholder' : 'promedio dedicadas al trabajo remoto'
             }),
             'position' : forms.Select(attrs = {'class' : 'controls'}),
             'sector' : forms.Select(attrs = {'class' : 'controls'}),
