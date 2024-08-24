@@ -14,8 +14,8 @@ class Modelo:
 
         nacimiento = data.birthdate.year
         id_genero = genero_catego()[data.gender]
-        id_cargo = cargo_catego()[data.position]
-        id_sector = sector_catego()[data.sector]
+        id_cargo = cargo_catego()[data2.position]
+        id_sector = sector_catego()[data2.sector]
         nucleo = nucleo_catego()[data1.nucleo_familiar]
         fm_cambio = respuesta_catego()[data1.cambios_trabajo] 
         tm_desplazamiento = data1.tiempoDesplazamiento
@@ -39,12 +39,13 @@ class Modelo:
         return ml
 
     def conexion (self , id_user : int):
+        # Lineal
+        ### Guardar los datos en una variable y que sean de dos decimales
         datos = Modelo.categoria_ml(self , id_user)
 
         model = joblib.load('modelos/lineal/modelo_productividad.pkl')
         nuevos_datos = np.array(datos)  # Sustituye con tus valores
 
-        #scaler = StandardScaler()
         scaler = joblib.load('modelos/lineal/escalador_lineal.pkl')
 
         nuevos_datos_escalados = scaler.transform(nuevos_datos)
@@ -52,3 +53,18 @@ class Modelo:
         prediccion = model.predict(nuevos_datos_escalados)
  
         print(f'Predicción de horas de trabajo remoto: {prediccion[0]}')
+
+        #Logistica
+        modelo_cargado = joblib.load('modelos/logistica/modelo_logistico.pkl')
+
+        escalador_cargado = joblib.load('modelos/logistica/escalador.pkl')
+
+        codificador_etiquetas_cargado = joblib.load('modelos/logistica/codificador_etiquetas.pkl')
+ 
+        nuevos_datos_escalados = escalador_cargado.transform(datos)
+         
+        predicciones_codificadas = modelo_cargado.predict(nuevos_datos_escalados)
+         
+        predicciones_decodificadas = codificador_etiquetas_cargado.inverse_transform(predicciones_codificadas)
+         
+        print(predicciones_decodificadas)

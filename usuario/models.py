@@ -1,6 +1,6 @@
 from django.db import models
 from admins.models import Myuser
-from .select import nucleo , ocupacion_actual , respuesta
+from .select import nucleo , respuesta , cargo , sector
 
 # Create your models here.
 

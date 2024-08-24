@@ -9,11 +9,6 @@ class RegresionLogistica (models.Model):
         models.CASCADE
     )
     trabajoRemoto = models.CharField(max_length = 35 , blank = False , null = False)
-    trabajoRemotoMeses = models.IntegerField()
-    tiempoFamilia = models.IntegerField()
-    tiempoCasa = models.IntegerField()
-    tiempoDesplazamiento = models.IntegerField()
-    fomentaCambioRemoto = models.IntegerField()
 
     class Meta:
        verbose_name = 'RegresionLogistica'
@@ -27,11 +22,6 @@ class RegresionLineal (models.Model):
         models.CASCADE
     )
     trabajoRemoto = models.IntegerField
-    trabajoRemotoMeses = models.IntegerField()
-    tiempoFamilia = models.IntegerField()
-    tiempoCasa = models.IntegerField()
-    tiempoDesplazamiento = models.IntegerField()
-    fomentaCambioRemoto = models.IntegerField()
 
     class Meta:
        verbose_name = 'RegresionLineal'
