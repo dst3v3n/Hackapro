@@ -141,4 +141,7 @@ AUTH_USER_MODEL = 'admins.Myuser'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'

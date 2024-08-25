@@ -5,6 +5,10 @@ from .models import Perfil , Trabajo
 from admins.models import Myuser
 from django.contrib.auth import logout
 from marchine_learning.views import Modelo
+from powerbi.models import prediccion_power
+from marchine_learning.models import RegresionLineal , RegresionLogistica
+from usuario.models import powerbi_user
+import sweetify
 
 # Create your views here.
 
@@ -39,20 +43,20 @@ class Perfil_view (View):
         else:
             form_perfil = Form_perfil (request.POST)
             form_trabajo = Form_trabajo (request.POST)
-            if form_perfil.is_valid ():
-                if form_trabajo.is_valid ():
-                    info_perfil = form_perfil.save (commit = False)
-                    info_perfil.myuser_id = self.request.user.id
-                    info_perfil.save()
+            if form_perfil.is_valid () and form_trabajo.is_valid ():
+                info_perfil = form_perfil.save (commit = False)
+                info_perfil.myuser_id = self.request.user.id
+                info_perfil.save()
 
-                    info_trabajo = form_trabajo.save(commit = False)
-                    info_trabajo.myuser_id = self.request.user.id
-                    info_trabajo.save ()
-                    Modelo.conexion(self , self.request.user.id)
-
-                    return redirect ('perfil_user')
+                info_trabajo = form_trabajo.save(commit = False)
+                info_trabajo.myuser_id = self.request.user.id
+                info_trabajo.save ()
+                Modelo.conexion(self , self.request.user.id)
+                sweetify.success (request, 'Pefil creado' , text='Tu perfil fue creado ', persistent='ok')
+                return redirect ('perfil_user')
 
             else:
+                sweetify.warning (request , "El perfil no se pudo crear" , persistent='Ok')
                 return redirect ('perfil_user')
 
     def put (self , request):
@@ -62,18 +66,32 @@ class Perfil_view (View):
         trabajo = Trabajo.objects.get (myuser_id = self.request.user.id)
         form_trabajo = Form_trabajo(request.POST , instance = trabajo)
 
-        if form_perfil.is_valid():
-            if form_trabajo.is_valid():
-                form_perfil.save()
-                form_trabajo.save()
+        if form_perfil.is_valid() and form_trabajo.is_valid():
+            form_perfil.save()
+            form_trabajo.save()
+            Modelo.conexion(self , self.request.user.id)
+            sweetify.success (request, 'Perfil actualizado' , text='Tu perfil fue actualizado ', persistent='ok')
 
-                return redirect ('perfil_user')
+            return redirect ('perfil_user')
 
         else:
+            sweetify.warning (request , "El perfil no se actualizo" , persistent='Ok')
             return redirect ('perfil_user')
 
     def delete (self, request):
-        # Eliminar los datos en los modelos de prediccion
+       for i in range (1 , 6):
+        power = prediccion_power.objects.filter(myuser_id = self.request.user.id).first()
+        power.delete()
+
+        power_user = powerbi_user.objects.filter(myuser_id = self.request.user.id).first()
+        power_user.delete()
+
+       regre_lineal = RegresionLineal.objects.get(myuser_id = self.request.user.id)
+       regre_lineal.delete()
+
+       regre_logistico = RegresionLogistica.objects.get(myuser_id = self.request.user.id)
+       regre_logistico.delete()
+
        perfil = Perfil.objects.get(myuser_id = self.request.user.id)
        perfil.delete()
 

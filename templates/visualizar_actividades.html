@@ -1,4 +1,5 @@
 {% load static %}
+{% load sweetify %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,16 +56,16 @@
           <h4>{{ Actividades.dateInicio }}</h4>
           <h4>{{ Actividades.dateFin }}</h4>
           <h4>{{ Actividades.tiempo_formateado }}</h4>
-        {% elif Actividades.proceso == 'En proceso' %}
+        {% elif Actividades.proceso == 'En proceso' or Actividades.proceso == 'En proceso ' %}
           <h4>{{ Actividades.dateInicio }}</h4>
         {% endif %}
-        {% if Actividades.proceso == 'Sin iniciar' %}
+        {% if Actividades.proceso == 'Sin iniciar'%}
           <form method="post">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ Actividades.id }}">
             <input class="boton_in" type="submit" value="Iniciar">
           </form>
-        {% elif Actividades.proceso == 'En proceso' %}
+        {% elif Actividades.proceso == 'En proceso' or Actividades.proceso == 'En proceso ' %}
           <form method="post">
             {% csrf_token %}
             <input type="hidden" name="_method" value="PUT">
@@ -102,5 +103,7 @@
       </div>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="/static/js/loader.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% sweetify %}
 </body>
 </html>

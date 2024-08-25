@@ -2,9 +2,8 @@ from django.http import HttpRequest
 from django.shortcuts import render , redirect
 from django.views.generic import View
 from admins.forms import Form_myuser , Form_login
-from django.core.exceptions import ValidationError
 import sweetify
-from django.contrib.auth import authenticate, logout , get_user_model
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
 from usuario.forms import Form_perfil
 from django.contrib import admin
@@ -12,16 +11,16 @@ from django.contrib import admin
 class index (View):
     template_name = 'index.html'
 
-    def get (self, request: HttpRequest):        
+    def get (self, request: HttpRequest):
         return render(request, self.template_name)
 
 class registro (View):
     template_name = 'registro_us.html'
-    
+
     def get (self, request: HttpRequest):
         context = {'form_register' : Form_myuser}
         return render(request, self.template_name, context)
-    
+
     def post (self, request):
         email = request.POST ['email']
         password1 = request.POST ['password1']
@@ -44,7 +43,7 @@ class login (View):
 
     def get (self , request):
         context = {'form_login' : Form_login,
-                   'form' : Form_perfil}        
+                   'form' : Form_perfil}
         return render (request, self.template_name , context)
 
     def post (self, request):

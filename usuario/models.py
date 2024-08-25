@@ -42,10 +42,12 @@ class powerbi_user (models.Model):
         Myuser,
         models.CASCADE
     )
+
     categoria = models.ForeignKey (
         categorias,
         models.CASCADE
     )
+
     valor = models.DecimalField(max_digits=10 , decimal_places=2)
 
     class Meta:
