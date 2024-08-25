@@ -1,5 +1,5 @@
 from admins.models import Myuser
-from usuario.models import Trabajo , Perfil
+from usuario.models import Trabajo , Perfil , powerbi_user
 from .categorizacion import cargo_catego , sector_catego , genero_catego , nucleo_catego , respuesta_catego
 from .models import RegresionLineal , RegresionLogistica
 import joblib
@@ -8,7 +8,7 @@ import numpy as np
 # Create your views here.
 
 class Modelo:
-    def categoria_ml (self , id_user : int):
+    def categoria_ml (id_user : int):
         data = Myuser.objects.get(pk = id_user)
         data1 = Perfil.objects.get(myuser_id = id_user)
         data2 = Trabajo.objects.get(myuser_id = id_user)
@@ -18,30 +18,32 @@ class Modelo:
         id_cargo = cargo_catego()[data2.position]
         id_sector = sector_catego()[data2.sector]
         nucleo = nucleo_catego()[data1.nucleo_familiar]
-        fm_cambio = respuesta_catego()[data1.cambios_trabajo] 
+        fm_cambio = respuesta_catego()[data1.cambios_trabajo]
         tm_desplazamiento = data1.tiempoDesplazamiento
         t_casa = data1.horasDomestica
         t_familia = data1.horasPersonal
         t_remoto_meses = data2.tiempoDedicado/10
 
         ml = [[
-            nacimiento, 
-            id_genero, 
-            id_cargo, 
+            nacimiento,
+            id_genero,
+            id_cargo,
             id_sector,
-            nucleo, 
-            fm_cambio, 
-            tm_desplazamiento, 
-            t_casa, 
+            nucleo,
+            fm_cambio,
+            tm_desplazamiento,
+            t_casa,
             t_familia,
             t_remoto_meses,
         ]]
-        
+
+        Modelo.powerbi(id_user , tm_desplazamiento , t_casa , t_familia , t_remoto_meses)
+
         return ml
 
     def conexion (self , id_user : int):
         # Lineal
-        datos = Modelo.categoria_ml(self , id_user)
+        datos = Modelo.categoria_ml(id_user)
 
         model = joblib.load('modelos/lineal/modelo_productividad.pkl')
         nuevos_datos = np.array(datos)
@@ -51,7 +53,7 @@ class Modelo:
         nuevos_datos_escalados = scaler.transform(nuevos_datos)
 
         prediccion = model.predict(nuevos_datos_escalados)
- 
+
         lineal = RegresionLineal(myuser_id = id_user, trabajoRemoto = np.round(prediccion[0] , 2))
         lineal.save()
 
@@ -62,12 +64,43 @@ class Modelo:
         escalador_cargado = joblib.load('modelos/logistica/escalador.pkl')
 
         codificador_etiquetas_cargado = joblib.load('modelos/logistica/codificador_etiquetas.pkl')
- 
+
         nuevos_datos_escalados = escalador_cargado.transform(datos)
-         
+
         predicciones_codificadas = modelo_cargado.predict(nuevos_datos_escalados)
-         
+
         predicciones_decodificadas = codificador_etiquetas_cargado.inverse_transform(predicciones_codificadas)
 
         logistica = RegresionLogistica(myuser_id = id_user , trabajoRemoto = predicciones_decodificadas[0])
         logistica.save()
+
+    def powerbi (id_user , hora_desplazamiento , hora_hogar , hora_familia , horaTrabajo):
+
+        desplazamiento = powerbi_user (
+            myuser_id = id_user,
+            categoria = 1,
+            valor = hora_desplazamiento
+        )
+
+        hogar = powerbi_user (
+            myuser_id = id_user,
+            categoria = 2,
+            valor = hora_hogar
+        )
+
+        familia = powerbi_user (
+            myuser_id = id_user,
+            categoria = 3,
+            valor = hora_familia
+        )
+
+        trabajo  = powerbi_user (
+            myuser_id = id_user,
+            categoria = 3,
+            valor = horaTrabajo
+        )
+
+        desplazamiento.save()
+        hogar.save()
+        familia.save()
+        trabajo.save()
