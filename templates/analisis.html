@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <style>
+        .logoBar {
+            display: none;
+        }
+    </style>
+     <header>
+        <div class="interior">
+          <a href="{% url 'index' %}" class="logo" target="blank">HACKATON</a>
+          <nav class="navegacion">
+            <ul>
+              {% if request.user.id != None %}
+              {% if request.user.type_user !=  'User' %}
+              <li><a href="{% url 'analisis_power' %}">Analisis</a></li>
+              {% endif %}
+              {% if request.user.type_user == 'Superuser' %}
+              <li><a href="{% url 'admin_link' %}">Administrador</a></li>
+              {% endif %}
+              {% if request.user.type_user ==  'User' %}
+              <li><a href="{% url 'perfil_user' %}">Perfil</a></li>
+              {% endif %}
+              <li class="submenu">
+                <a href="{% url 'visualizar_actividad' %}" >Actividades</a>
+                <ul class="hijos">
+                  <li><a href="{% url 'registro_actividad' %}">Registro de actividades</a></li>
+                  <li><a href="{% url 'archivo' %}">subir actividades</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'logout' %}">Cerrra sesión</a></li>
+              {% else %}
+              <li><a href="{% url 'registro' %}">Registro</a></li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <iframe
+      title="versio_definitiva"
+      width="1920"
+      height="1080"
+      src="https://app.powerbi.com/view?r=eyJrIjoiYjJmNTRjMDEtYTc5NC00Mzc5LWI3NjItMGI5MzE0YWIwYzUwIiwidCI6IjAzZTFiMjI2LTU3ODktNGE5Ny05MGY2LTQ0YTQ0MjQxYmE2ZCIsImMiOjR9&pageName=adc3a7199ede36315e71"
+      frameborder="0"
+      allowFullScreen="true"
+      style="border:none;">
+  </iframe>
+
+  </script>
+</body>
+</html>

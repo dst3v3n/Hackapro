@@ -14,11 +14,11 @@ class Register_admin (LoginRequiredMixin , View):
         if self.request.user.type_user != 'User':
             context = {'form_register' : Form_admin}
             return render(request, self.template_name, context)
-        
+
         else:
             return redirect ('index')
 
-    
+
     def post(self , request):
         print('hola')
         password1 = request.POST ['password1']
@@ -39,3 +39,9 @@ class Register_admin (LoginRequiredMixin , View):
 
         sweetify.warning (request , "El correo ya existe" , persistent='Ok')
         return redirect ("register_admin")
+
+class Analisis (LoginRequiredMixin  ,View):
+    templante_name = 'analisis.html'
+
+    def get (self , request):
+        return render (request , self.templante_name)

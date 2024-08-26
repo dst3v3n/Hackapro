@@ -21,13 +21,14 @@
         <ul>
           {% if request.user.id != None %}
           {% if request.user.type_user !=  'User' %}
-          <li><a href="">Analisis</a></li>
+          <li><a href="{% url 'analisis_power' %}">Analisis</a></li>
           {% endif %}
           {% if request.user.type_user == 'Superuser' %}
           <li><a href="{% url 'admin_link' %}">Administrador</a></li>
           {% endif %}
-          <li><a href="{% url 'index' %}">Inicio</a></li>
+          {% if request.user.type_user ==  'User' %}
           <li><a href="{% url 'perfil_user' %}">Perfil</a></li>
+          {% endif %}
           <li class="submenu">
             <a href="{% url 'visualizar_actividad' %}" >Actividades</a>
             <ul class="hijos">
@@ -35,8 +36,7 @@
               <li><a href="{% url 'archivo' %}">subir actividades</a></li>
             </ul>
           </li>
-
-
+          <li><a href="{% url 'logout' %}">Cerrra sesión</a></li>
           {% else %}
           <li><a href="{% url 'registro' %}">Registro</a></li>
           <li><a href="{% url 'login' %}">Login</a></li>

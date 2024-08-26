@@ -21,12 +21,14 @@
             <ul>
               {% if request.user.id != None %}
               {% if request.user.type_user !=  'User' %}
-              <li><a href="">Analisis</a></li>
+              <li><a href="{% url 'analisis_power' %}">Analisis</a></li>
               {% endif %}
               {% if request.user.type_user == 'Superuser' %}
               <li><a href="{% url 'admin_link' %}">Administrador</a></li>
               {% endif %}
+              {% if request.user.type_user ==  'User' %}
               <li><a href="{% url 'perfil_user' %}">Perfil</a></li>
+              {% endif %}
               <li class="submenu">
                 <a href="{% url 'visualizar_actividad' %}" >Actividades</a>
                 <ul class="hijos">

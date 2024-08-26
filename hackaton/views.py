@@ -55,6 +55,7 @@ class login (View):
             response = redirect ('index')
             return response
         else:
+            sweetify.error (request , "El correo o la contraseña estan incorrectos" ,  persistent='Ok')
             return redirect('login')
 
 class logout_view (View):

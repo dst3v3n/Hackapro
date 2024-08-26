@@ -112,8 +112,8 @@ class Archivo(LoginRequiredMixin , View):
                         actividad.tiempo = resultado
                     sweetify.toast(self.request, 'Los archivos fueron subidos' , timer=4000)
                     actividad.save()
-            sweetify.toast(self.request, 'Los archivos no pudieron ser subidos', icon = 'errro' , timer=4000)
             return redirect('archivo')
         else:
+            sweetify.toast(self.request, 'Los archivos no pudieron ser subidos', icon = 'error' , timer=4000)
             form = Form_archivo()
             return render(request, 'upload_excel.html', {'form': form})
